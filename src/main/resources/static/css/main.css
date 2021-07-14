@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1150px;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    display: inline-block;
+}
+
+.info-color{
+    color: rgb(67, 160, 71);
+}
+
+.modify-color{
+    color: #039be5;
+}
+
+.delete-color{
+    color: #f44336;
+}
+
+.my-activity-column{
+    width: 130px;
+}
