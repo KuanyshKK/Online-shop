@@ -22,6 +22,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/manufacturerList">Производители</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categories">Категории</a>
+                </li>
             </ul>
         </div>
         <div class="col-9">

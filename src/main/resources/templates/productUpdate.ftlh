@@ -24,6 +24,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/manufacturerList">Производители</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categories">Категории</a>
+                </li>
             </ul>
         </div>
         <div class="col-9">
@@ -34,7 +37,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputManufacturer">Производитель</label>
-                    <input type="text" name="manufacturer" class="form-control" id="exampleInputDescription" disabled>
+                    <input type="text" name="manufacturer" class="form-control" id="exampleInputDescription" value="${product.manufacturer.name}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputDescription">Описание</label>
@@ -42,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPrice">Цена</label>
-                    <input type="text" name="price" class="form-control" id="exampleInputPrice" value="${product.price?string}">
+                    <input type="text" name="price" class="form-control" id="exampleInputPrice" value="<#setting number_format="0.##">${product.price?string}">
                 </div>
                 <button class="btn btn-primary">Редактировать</button>
             </form>
