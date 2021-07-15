@@ -9,4 +9,5 @@ import java.util.List;
 public class ProductDataModel {
     private List<Product> products = new ArrayList<>();
     private List<Manufacturer> manufacturers = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 }

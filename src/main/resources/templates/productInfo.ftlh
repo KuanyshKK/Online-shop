@@ -39,6 +39,7 @@
                 <div class="card-body">
                     <h5 class="card-title">${product.name!}</h5>
                     <p class="card-text">Производитель - ${product.manufacturer.name!}</p>
+                    <p class="card-text">Категория - ${product.category.name!}</p>
                     <p class="card-text">Описание - ${product.description!}</p>
                 </div>
                 <div class="card-footer text-muted">

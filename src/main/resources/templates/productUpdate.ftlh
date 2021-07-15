@@ -37,7 +37,11 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputManufacturer">Производитель</label>
-                    <input type="text" name="manufacturer" class="form-control" id="exampleInputDescription" value="${product.manufacturer.name}" disabled>
+                    <input type="text" name="manufacturer" class="form-control" id="exampleInputManufacturer" value="${product.manufacturer.name}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputManufacturer">Категория</label>
+                    <input type="text" name="category" class="form-control" id="exampleInputCategory" value="${product.category.name}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputDescription">Описание</label>

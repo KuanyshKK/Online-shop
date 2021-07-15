@@ -25,6 +25,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/manufacturerList">Производители</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categories">Категории</a>
+                </li>
             </ul>
         </div>
         <div class="col-9">
@@ -37,9 +40,13 @@
                     <th scope="col">Цена</th>
                     <th scope="col">
                         <#if (productDataModel.manufacturers?size>0)>
+                            <#if (productDataModel.categories?size>0!)>
                             <a href="#" data-toggle="tooltip" title="Добавить товар"><i class="fas fa-plus" data-toggle="modal" data-target="#productModalCenter"></i></a>
                             <#else>
-                                <a href="/manufacturerList/add"><i class="fas fa-plus"></i></a>
+                                <a href="/categories/add"><i class="fas fa-plus"></i></a>
+                            </#if>
+                        <#else>
+                            <a href="/manufacturerList/add"><i class="fas fa-plus"></i></a>
                         </#if>
 
                     </th>
@@ -52,7 +59,9 @@
                     <th scope="row">${product?counter}</th>
                     <td>${product.name!""}</td>
                     <td>${product.description!""}</td>
-                    <td>${product.price!""}</td>
+                    <td>
+                        <#setting number_format="0.##">${product.price}
+                    </td>
                     <td class="my-activity-column">
                         <a href="/products/${product.id}" data-toggle="tooltip" title="Информация">
                             <i class="fas fa-info-circle fa-lg info-color pr-3"></i>
@@ -88,10 +97,19 @@
                                 <input type="text" name="name" class="form-control" id="exampleInputInputName" >
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputManufacturer">Производитель</label>
                                 <select class="custom-select" name="manufacturerId">
                                 <#list productDataModel.manufacturers as manufacturer>
                                         <option value="${manufacturer.id}">${manufacturer.name}</option>
                                 </#list>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputCategory">Категория</label>
+                                <select class="custom-select" name="categoryId">
+                                    <#list productDataModel.categories as category>
+                                        <option value="${category.id}">${category.name}</option>
+                                    </#list>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -100,7 +118,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPrice">Цена</label>
-                                <input type="number" name="price" class="form-control" id="exampleInputPrice">
+                                <input type="text" name="price" class="form-control" id="exampleInputPrice">
                             </div>
                             <button class="btn btn-primary">Добавить</button>
                         </form>
