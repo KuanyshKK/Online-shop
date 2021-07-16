@@ -16,10 +16,10 @@
 <body>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-2 my-menu">
             <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">Продукты</a>
+                <li class="nav-item pt-1">
+                    <a class="nav-link" href="/products">Товары</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/manufacturerList">Производители</a>
@@ -27,25 +27,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/categories">Категории</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shop">Магазин</a>
+                </li>
             </ul>
         </div>
-        <div class="col-9">
+        <div class="col-10">
             <form action="/products/${product.id}/update" method="post">
                 <div class="form-group">
                     <label for="exampleInputName">Наименование</label>
-                    <input type="text" name="name" class="form-control" id="exampleInputInputName" value="${product.name}">
+                    <input type="text" name="name" class="form-control" id="exampleInputInputName" value="${product.name!}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputManufacturer">Производитель</label>
-                    <input type="text" name="manufacturer" class="form-control" id="exampleInputManufacturer" value="${product.manufacturer.name}" disabled>
+                    <input type="text" name="manufacturer" class="form-control" id="exampleInputManufacturer" value="${product.manufacturer.name!}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputManufacturer">Категория</label>
-                    <input type="text" name="category" class="form-control" id="exampleInputCategory" value="${product.category.name}" disabled>
+                    <input type="text" name="category" class="form-control" id="exampleInputCategory" value="${product.category.name!}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputDescription">Описание</label>
-                    <input type="text" name="description" class="form-control" id="exampleInputDescription" value="${product.description}">
+                    <input type="text" name="description" class="form-control" id="exampleInputDescription" value="${product.description!}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPrice">Цена</label>
@@ -54,6 +57,7 @@
                 <button class="btn btn-primary">Редактировать</button>
             </form>
     </div>
+</div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

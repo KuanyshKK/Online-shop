@@ -17,10 +17,10 @@
 <body>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-2 my-menu mt-5 pt-1">
             <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">Продукты</a>
+                <li class="nav-item pt-1">
+                    <a class="nav-link" href="/products">Товары</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/manufacturerList">Производители</a>
@@ -28,9 +28,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/categories">Категории</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shop">Магазин</a>
+                </li>
             </ul>
         </div>
-        <div class="col-9">
+        <div class="col-10">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -43,6 +46,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                <h3 class="mb-3">Производители</h3>
                 <#if manufacturers?? &&(manufacturers?size > 0)>
                     <#list manufacturers as manufacturer>
                         <tr>
@@ -50,13 +54,13 @@
                             <td>${manufacturer.name!""}</td>
                             <td>${manufacturer.code!""}</td>
                             <td class="my-activity-column">
-                                <a href="/manufacturerList/${manufacturer.id}" data-toggle="tooltip" title="Информация">
+                                <a href="/manufacturerList/${manufacturer.id!}" data-toggle="tooltip" title="Информация">
                                     <i class="fas fa-info-circle fa-lg info-color pr-3"></i>
                                 </a>
-                                <a href="/manufacturerList/${manufacturer.id}/update" data-toggle="tooltip" title="Изменить производителя">
+                                <a href="/manufacturerList/${manufacturer.id!}/update" data-toggle="tooltip" title="Изменить производителя">
                                     <i class="far fa-edit fa-lg modify-color pr-3"></i>
                                 </a>
-                                <a href="/manufacturerList/${manufacturer.id}/deletePage" data-toggle="tooltip" title="Удалить производителя">
+                                <a href="/manufacturerList/${manufacturer.id!}/deletePage" data-toggle="tooltip" title="Удалить производителя">
                                     <i class="far fa-trash-alt fa-lg delete-color"></i>
                                 </a>
                             </td>

@@ -17,10 +17,10 @@
 <body>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-2 my-menu mt-5 pt-1">
             <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">Продукты</a>
+                <li class="nav-item pt-1">
+                    <a class="nav-link" href="/products">Товары</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/manufacturerList">Производители</a>
@@ -28,9 +28,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/categories">Категории</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shop">Магазин</a>
+                </li>
             </ul>
         </div>
-        <div class="col-9">
+        <div class="col-10">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -53,6 +56,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                <h3 class="mb-3">Товары</h3>
                 <#if productDataModel?? &&(productDataModel.products?size > 0)>
                 <#list productDataModel.products as product>
                 <tr>

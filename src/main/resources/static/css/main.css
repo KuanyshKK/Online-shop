@@ -31,3 +31,13 @@ li{
 .my-activity-column{
     width: 130px;
 }
+
+.my-menu{
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: gray;
+}
+
+.my-menu a{
+    color: dimgray;
+}

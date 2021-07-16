@@ -16,10 +16,10 @@
 <body>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-2 my-menu">
             <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="/products">Продукты</a>
+                <li class="nav-item pt-1">
+                    <a class="nav-link" href="/products">Товары</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/manufacturerList">Производители</a>
@@ -27,10 +27,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/categories">Категории</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shop">Магазин</a>
+                </li>
             </ul>
         </div>
-        <div class="col-9">
-
+        <div class="col-10">
             <div class="card ">
                 <div class="card-header text-center">
                     Товар
