@@ -1,3 +1,2 @@
-planned - 2.5d
-actual - 3d
-CRUD действия сделал ввиде иконок
+planned - 2d
+actual - 2d
