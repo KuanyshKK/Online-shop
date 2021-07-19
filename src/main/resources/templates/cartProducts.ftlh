@@ -1,3 +1,4 @@
+<#import "navbar.ftlh" as navbar>
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,20 +19,9 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-2 my-menu">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item pt-1">
-                    <a class="nav-link" href="/products">Товары</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/manufacturerList">Производители</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/categories">Категории</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/shop">Магазин</a>
-                </li>
-            </ul>
+            <@navbar.verticalNav>
+
+            </@>
         </div>
         <div class="col-10">
             <h3 class="mb-3">Корзина пользователя </h3>
@@ -60,9 +50,6 @@
                                     <i class="far fa-trash-alt fa-lg delete-color pr-3" data-toggle="modal"
                                        data-target="#cartProductDeleteModalCenter" data-whatever=${cartProduct.id}></i>
                                 </a>
-<#--                                <a href="/cartProducts/${cartProduct.id}/deletePage" data-toggle="tooltip" title="Удалить продукт из корзины">-->
-<#--                                    <i class="far fa-trash-alt fa-lg delete-color"></i>-->
-<#--                                </a>-->
                             </td>
                         </tr>
                     </#list>
@@ -73,7 +60,8 @@
             </table>
             <#list cartProducts as cp>
                 <#if cp.customerEmail ??>
-                    <a href="/cartProducts/deleteAll/${cp.customerEmail}" class="btn btn-danger float-right ">Удалить все</a>
+                    <a href="/cartProducts/${cp.customerEmail}/prepareOrder" class="btn btn-success">Перейти к покупке</a>
+                    <a href="/cartProducts/${cp.customerEmail}/deleteAll" class="btn btn-danger float-right ">Удалить все</a>
                 </#if>
                 <#break>
 
@@ -92,13 +80,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/cardProducts/update" method="post">
+                    <form action="/cartProducts/update" method="post">
                         <div class="form-group">
-                            <input type="hidden" name="productId" class="form-control" id="recipient-name">
+                            <input type="hidden" name="productId" class="form-control" id="updateProduct">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputAmount">Количество</label>
-                            <input type="number" name="amount" class="form-control" id="exampleInputAmount" value="0">
+                            <input type="number" name="amount" class="form-control" id="exampleInputAmount" value="1" min="1">
                         </div>
                         <button class="btn btn-primary">Изменить</button>
                     </form>
@@ -116,9 +104,9 @@
                     </button>
                 </div>
                 <div class="modal-body p-0">
-                    <form action="/cartProducts/delete" method="get">
+                    <form action="/cartProducts/delete" method="post">
                         <div class="form-group">
-                            <input type="hidden" name="productId" class="form-control" id="recipient-name">
+                            <input type="hidden" name="productId" class="form-control" id="deleteProduct">
                         </div>
                         <p class="mx-3 mb-5 ">Вы действительно хотите удалить?</p>
                         <div class="modal-footer pt-1">
@@ -146,7 +134,7 @@
         var button = $(event.relatedTarget)
         var recipient = button.data('whatever')
         var modal = $(this)
-        modal.find('.modal-body #recipient-name').val(recipient)
+        modal.find('.modal-body #updateProduct').val(recipient)
     })
 </script>
 <script>
@@ -154,7 +142,7 @@
         var button = $(event.relatedTarget)
         var recipient = button.data('whatever')
         var modal = $(this)
-        modal.find('.modal-body #recipient-name').val(recipient)
+        modal.find('.modal-body #deleteProduct').val(recipient)
     })
 </script>
 </html>

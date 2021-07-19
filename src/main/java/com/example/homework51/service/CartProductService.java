@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @Service
 public class CartProductService {
     private final CartProductRepository cartProductRepository;
@@ -29,6 +32,13 @@ public class CartProductService {
                 HttpStatus.NOT_FOUND,
                 String.format("Товар с id %s в корзине не найдена", id)
         ));
+    }
+
+    public double calculateTotal(List<CartProduct> cartProducts){
+        var total = cartProducts.stream()
+                .mapToDouble(i -> i.getProduct().getPrice() * i.getAmount())
+                .sum();
+        return total;
     }
 
 

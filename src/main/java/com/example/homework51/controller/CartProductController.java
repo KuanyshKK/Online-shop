@@ -1,5 +1,6 @@
 package com.example.homework51.controller;
 
+import com.example.homework51.model.BuyCartProductModel;
 import com.example.homework51.model.CartProduct;
 import com.example.homework51.model.Product;
 import com.example.homework51.model.ShopDataModel;
@@ -8,14 +9,12 @@ import com.example.homework51.repository.ProductRepository;
 import com.example.homework51.service.CartProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/cartProducts")
 public class CartProductController {
     private final CartProductRepository cartProductRepository;
     private final CartProductService cartProductService;
@@ -36,15 +35,15 @@ public class CartProductController {
         return "shop";
     }
 
-    @PostMapping("cartProduct/add")
+    @PostMapping("/add")
     public String addProductToCart(@RequestParam String productId,
                                    @RequestParam String customerEmail,
                                    @RequestParam int amount){
         cartProductService.addCartProduct(productId, customerEmail, amount);
-        return "redirect:/shop";
+        return "redirect:/cartProducts/shop";
     }
 
-    @GetMapping("cartProducts")
+    @GetMapping
     public String getCartProductByEmail(@RequestParam String email, Model model){
         List<CartProduct> cartProducts = cartProductRepository.getAllByCustomerEmail(email);
         model.addAttribute("cartProducts", cartProducts);
@@ -52,7 +51,7 @@ public class CartProductController {
         return "cartProducts";
     }
 
-    @PostMapping("cardProducts/update")
+    @PostMapping("/update")
     public String updateAmountOfProducts(@RequestParam String productId, @RequestParam int amount){
         CartProduct cartProduct = cartProductService.getById(productId);
         cartProduct.setAmount(amount);
@@ -62,22 +61,37 @@ public class CartProductController {
         return "redirect:/cartProducts?email=" + cartProduct.getCustomerEmail();
     }
 
-    @GetMapping("cartProducts/delete")
+    @PostMapping("/delete")
     public String deleteProductFromCart(@RequestParam String productId){
         CartProduct cartProduct = cartProductService.getById(productId);
         cartProductRepository.delete(cartProduct);
         List<CartProduct> cartProducts = cartProductRepository.getAllByCustomerEmail(cartProduct.getCustomerEmail());
+
         return cartProducts.size()>0 ?
                 "redirect:/cartProducts?email=" + cartProduct.getCustomerEmail()
-                : "redirect:/shop";
+                : "redirect:/cartProducts/shop";
 
     }
 
-    @GetMapping("cartProducts/deleteAll/{email}")
+    @GetMapping("/{email}/deleteAll")
     public String deleteAllProductFromCart(@PathVariable String email){
         cartProductRepository.deleteAllByCustomerEmail(email);
         return "redirect:/shop";
     }
+
+    @GetMapping("/{email}/prepareOrder")
+    public String prepareOrderForCartProducts(@PathVariable String email, Model model){
+        List<CartProduct> cartProducts = cartProductRepository.getAllByCustomerEmail(email);
+        BuyCartProductModel dataModel = new BuyCartProductModel();
+        double total = cartProductService.calculateTotal(cartProducts);
+        dataModel.setCartProducts(cartProducts);
+        dataModel.setTotal(total);
+        dataModel.setCustomerEmail(email);
+        model.addAttribute("dataModel", dataModel);
+        return "buyCartProducts";
+    }
+
+
 
 
 }

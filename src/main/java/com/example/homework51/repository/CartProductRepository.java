@@ -10,4 +10,5 @@ public interface CartProductRepository extends MongoRepository<CartProduct, Stri
     List<CartProduct> getAllByCustomerEmail(String email);
     void deleteAllByCustomerEmail(String email);
 
+
 }
