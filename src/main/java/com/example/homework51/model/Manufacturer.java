@@ -15,11 +15,13 @@ public class Manufacturer {
     private String name;
     private int code;
     private String email;
+    private String filePath;
 
-    public Manufacturer(String name, int code, String email) {
+    public Manufacturer(String name, int code, String email, String filePath) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.code = code;
         this.email = email;
+        this.filePath = filePath;
     }
 }

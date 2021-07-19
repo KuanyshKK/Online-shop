@@ -1,2 +1,2 @@
-planned - ?d
-actual - 2d
+planned - 2d
+actual - 3d

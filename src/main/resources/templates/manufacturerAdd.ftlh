@@ -1,3 +1,4 @@
+<#import "navbar.ftlh" as navbar>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,31 +11,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <title>Производители</title>
 </head>
 <body>
 <div class="container mt-5">
     <div class="row">
         <div class="col-2 my-menu">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item pt-1">
-                    <a class="nav-link" href="/products">Товары</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/manufacturerList">Производители</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/categories">Категории</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/shop">Магазин</a>
-                </li>
-            </ul>
+            <@navbar.verticalNav>
+
+            </@>
         </div>
         <div class="col-10">
             <h3>Добавить производителя</h3>
-            <form action="/manufacturerList/add" method="post">
+            <form action="/manufacturerList/add" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="exampleInputName">Наименование</label>
                     <input type="text" name="name" class="form-control" id="exampleInputInputName" >
@@ -46,6 +36,12 @@
                 <div class="form-group">
                     <label for="exampleInputPrice">Email</label>
                     <input type="email" name="email" class="form-control" id="exampleInputEmail">
+                </div>
+                <div class="form-group" >
+                    <label for="file">
+                        <p>Фото</p>
+                        <input type="file" id="file" name="file">
+                    </label>
                 </div>
                 <button class="btn btn-primary">Добавить</button>
             </form>

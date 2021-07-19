@@ -1,3 +1,4 @@
+<#import "navbar.ftlh" as navbar>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,23 +18,12 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-2 my-menu">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item pt-1">
-                    <a class="nav-link" href="/products">Товары</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/manufacturerList">Производители</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/categories">Категории</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/shop">Магазин</a>
-                </li>
-            </ul>
+            <@navbar.verticalNav>
+
+            </@>
         </div>
         <div class="col-10">
-            <form action="/products/${product.id}/update" method="post">
+            <form action="/products/${product.id}/update" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="exampleInputName">Наименование</label>
                     <input type="text" name="name" class="form-control" id="exampleInputInputName" value="${product.name!}">
@@ -53,6 +43,12 @@
                 <div class="form-group">
                     <label for="exampleInputPrice">Цена</label>
                     <input type="text" name="price" class="form-control" id="exampleInputPrice" value="<#setting number_format="0.##">${product.price?string}">
+                </div>
+                <div class="form-group" >
+                    <label for="file">
+                        <p>Фото</p>
+                        <input type="file" id="file" name="file">
+                    </label>
                 </div>
                 <button class="btn btn-primary">Редактировать</button>
             </form>

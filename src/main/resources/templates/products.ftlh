@@ -1,3 +1,4 @@
+<#import "navbar.ftlh" as navbar>
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,20 +19,9 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-2 my-menu mt-5 pt-1">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item pt-1">
-                    <a class="nav-link" href="/products">Товары</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/manufacturerList">Производители</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/categories">Категории</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/shop">Магазин</a>
-                </li>
-            </ul>
+            <@navbar.verticalNav>
+
+            </@>
         </div>
         <div class="col-10">
             <table class="table table-bordered">
@@ -41,6 +31,7 @@
                     <th scope="col">Наименование</th>
                     <th scope="col">Описание</th>
                     <th scope="col">Цена</th>
+                    <th scope="col">Рейтинг</th>
                     <th scope="col">
                         <#if (productDataModel.manufacturers?size>0)>
                             <#if (productDataModel.categories?size>0!)>
@@ -65,6 +56,14 @@
                     <td>${product.description!""}</td>
                     <td>
                         <#setting number_format="0.##">${product.price}
+                    </td>
+                    <td>
+                        <#if product.averageRate?? &&(product.averageRate>0)>
+                            ${product.averageRate}
+                            <#else>
+                            <p>Нету <br>голосов</p>
+                        </#if>
+
                     </td>
                     <td class="my-activity-column">
                         <a href="/products/${product.id}" data-toggle="tooltip" title="Информация">
@@ -95,7 +94,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/products" method="post">
+                        <form action="/products" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="exampleInputName">Наименование</label>
                                 <input type="text" name="name" class="form-control" id="exampleInputInputName" >
@@ -122,9 +121,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPrice">Цена</label>
-                                <input type="text" name="price" class="form-control" id="exampleInputPrice">
+                                <input type="number" name="price" class="form-control" id="exampleInputPrice"
+                                       required>
                             </div>
-                            <button class="btn btn-primary">Добавить</button>
+                            <div class="form-group" >
+                                    <label for="file">
+                                         <p>Фото</p>
+                                        <input type="file" id="file" name="file">
+                                    </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Добавить</button>
                         </form>
                     </div>
                 </div>

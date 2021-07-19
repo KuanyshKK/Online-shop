@@ -1,3 +1,4 @@
+<#import "navbar.ftlh" as navbar>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,27 +11,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <title>Document</title>
 </head>
 <body>
 <div class="container mt-5">
     <div class="row">
         <div class="col-2 my-menu">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item pt-1">
-                    <a class="nav-link" href="/products">Товары</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/manufacturerList">Производители</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/categories">Категории</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/shop">Магазин</a>
-                </li>
-            </ul>
+            <@navbar.verticalNav>
+
+            </@>
         </div>
         <div class="col-10">
             <div class="card ">
@@ -38,9 +28,15 @@
                     Производитель
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">${manufacturer.name!}</h5>
-                    <p class="card-text">Код - ${manufacturer.code!}</p>
-                    <p class="card-text">Email - ${manufacturer.email!}</p>
+                    <div class="row no-gutters">
+                        <div class="col-8 pl-5 pt-2">
+                            <h5 class="card-title">${manufacturer.name!}</h5>
+                            <p class="card-text">Код - ${manufacturer.code!}</p>
+                            <p class="card-text">Email - ${manufacturer.email!}</p>
+                        </div>
+                        <div class="col-4"><img src="/files/${manufacturer.filePath!}" class="productInfoImage" alt=""></div>
+                    </div>
+
                 </div>
             </div>
         </div>
